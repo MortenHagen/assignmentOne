@@ -35,6 +35,9 @@ body{
 
 .main-menu__link {
     color: white;
+    font-size: 2rem;
+    margin: 5rem;
+    font-weight: 900;
 }
 
 .main-menu__link:hover{

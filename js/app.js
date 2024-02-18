@@ -126,7 +126,7 @@ function displayResults() {
 	// All the individual Sticker information
 	const newSticker = filteredObjects.map(result => ({
 		stickerHeader: result.name || result.title,
-		stickerText: result.gender || result.episode_id, // Assuming id is defined for all types
+		stickerText: result.gender || result.climate || result.release_date || result.model,// Assuming id is defined for all types
 		stickerImg: result.stickerImg,
 	}));
 
