@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const menuItems = document.querySelectorAll(".main-menu li");
+    const menuItems = document.querySelectorAll(".main-menu button");
     const images = document.querySelectorAll(".picture-container img");
 
     menuItems.forEach(item => {
@@ -15,6 +15,13 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    
+    const buttons = document.querySelectorAll('button[data-menu]');
 
+    buttons.forEach(button => {
+        button.addEventListener('click', function () {
+            const selectedValue = this.dataset.menu;
+            localStorage.setItem('storedValue', selectedValue);
+            console.log("Stored Value:", selectedValue); // Just for testing, you can remove this line
+        });
+    });
 });

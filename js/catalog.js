@@ -4,24 +4,15 @@ let stickerContainer;
 let category = "";
 let apiData = {}; // New variable to store fetched API data
 
-const apiButtons = document.querySelectorAll('.api-button');
 
-apiButtons.forEach(button => {
-    button.addEventListener('click', function (e) {
-        category = e.target.textContent.trim();
-        console.log(category);
-        // Check if data for the selected category is already fetched
-        if (!apiData[category]) {
-            getData();
-        } else {
-            // Use the stored data directly if available
-            renderDatas(apiData[category]);
-        }
-    });
-});
+        
+const storedValue = localStorage.getItem('storedValue');
+    if (storedValue) {
+        console.log("Stored Value (Retrieved on page load):", storedValue); // Just for testing, you can remove this line
+    }
 
 function getData() {
-    const url = `https://swapi.dev/api/${category.toLowerCase()}`;
+    const url = `https://swapi.dev/api/${storedValue}`;
 
     fetch(url)
         .then(response => response.json())
@@ -33,6 +24,7 @@ function getData() {
             console.error('Error fetching data:', error);
         });
 }
+getData();
 
 function renderDatas(data) {
     console.log(data);
@@ -42,22 +34,30 @@ function renderDatas(data) {
     }
     
     data.results.forEach(resultObject => {
+        // Extract the name and convert it to lowercase
+        const characterName = resultObject.name.toLowerCase();
+    
+        
+        // Construct the image URL based on the character's name
+        const stickerImgUrl = `assets/${characterName}.jpg`;
+        const stickerLogo = "assets/Star_Wars_Logo.svg.png";
+
         resultArray.push({
-            name: resultObject.name,
+            name: resultObject.name || resultObject.title,
             height: resultObject.height,
             mass: resultObject.mass,
             hair: resultObject.hair_color,
             gender: resultObject.gender,
-            stickerImg: "https://parade.com/.image/t_share/MTkwNTgxMTA1MTMyMDUzNjI5/funny-pictures.jpg",
-            title: resultObject.title,
-            id: resultObject.episode_id,
-            opening: resultObject.opening_crawl
+            id: resultObject.birth_year,
+            logo: stickerLogo,
+            stickerImg: stickerImgUrl // Add the sticker image URL to the resultObject
         });
     });
 
     // Call displayResults outside the loop if needed
     displayResults();
 }
+
 
 let inputLetters = document.getElementById("searchInput")
 inputLetters.addEventListener('input', () => {
@@ -78,9 +78,8 @@ function displayResults() {
     const newSticker = filteredObjects.map(result => ({
         stickerHeader: result.name || result.title,
         stickerText: result.id, // Assuming id is defined for all types
-        stickerImg: "https://thumbs.dreamstime.com/b/funny-face-baby-27701492.jpg",
-        stickerAttribute: 1,
-        productPicture1: 'https://parade.com/.image/t_share/MTkwNTgxMTA1MTMyMDUzNjI5/funny-pictures.jpg'
+        stickerImg: result.stickerImg,
+        stickerlogos: result.logo
     }));
 
 
@@ -147,26 +146,27 @@ function filterStickers(event) {
 // Logo-container
     const logoContainer = document.createElement('div');
     logoContainer.classList.add('product-page__header', 'show', 'offset--8', 'column--2', 'offset-small--5', 'column-small--2');
-    const logoImg = document.createElement('img');
-    logoImg.setAttribute('src', stickerInfo.stickerImg);
-    logoContainer.appendChild(logoImg);
     productPage.appendChild(logoContainer);
+
+// Logo
+    const logoImg = document.createElement('img');
+    logoImg.setAttribute('src', stickerInfo.stickerLogos);
+    logoContainer.appendChild(logoImg);
 
 // Slideshow-container
     const slideshowContainer = document.createElement('div');
     slideshowContainer.classList.add('product-page__slideshow', 'offset-small--1', 'offset--1', 'column--6');
     productPage.appendChild(slideshowContainer);
 
-
 // Picture-container
     const pictures = document.createElement('div');
     pictures.classList.add('slideshow__pictures');
-    slideshowContainer.appendChild(pictures);
+    productPage.appendChild(pictures);
 
 // Image 1
     const img1 = document.createElement('img');
     img1.classList.add('productPictures');
-    img1.setAttribute('src', newSticker.productPicture1);
+    img1.setAttribute('src', stickerInfo.stickerImg);
     pictures.appendChild(img1);
     
 // Product information container
@@ -178,10 +178,7 @@ function filterStickers(event) {
     <p>${stickerInfo.mass}</p>
     <p>${stickerInfo.hair}</p>
     <p>${stickerInfo.id}</p>
-    <p>${stickerInfo.title}</p>
-    <p>${stickerInfo.gender}</p>
-    <p>${stickerInfo.opening}</p>
-    <img class="productPictures" src=${stickerInfo.stickerImg}`;
+    <p>${stickerInfo.gender}</p>`
 }
 // Exit button deletes the whole product-page.
     const exitButtonsGrid = document.querySelectorAll('.exit-button__grid');
