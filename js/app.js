@@ -96,7 +96,6 @@ document.addEventListener("DOMContentLoaded", function() {
 				consumables: resultObject.consumables
 			});
 		});
-
 		displayResults();
 	}
 
@@ -189,6 +188,10 @@ document.addEventListener("DOMContentLoaded", function() {
 			exitButton.textContent = 'X';
 			productPage.appendChild(exitButton);
 
+			const infoPageName = document.createElement('p');
+			infoPageName.classList.add('info-page-name');
+			infoPageName.textContent = (stickerInfo.name)
+
 		// Product information container
 			const infoContainer = document.createElement('div');
 			infoContainer.classList.add('product-page__info-container');
@@ -204,24 +207,26 @@ document.addEventListener("DOMContentLoaded", function() {
 			img1.classList.add('productPictures');
 			img1.setAttribute('src', stickerInfo.stickerImg);
 			pictures.appendChild(img1);
-
-
+		
+		// creating the individual infos
 			function appendPropertyInfo(propertyName, propertyValue) {
 				if (propertyValue !== undefined) {
-
+			
 					const valueDiv = document.createElement('div');
 					valueDiv.classList.add('value-container');
 					infoContainer.appendChild(valueDiv);
-
-					const propertyID = document.createElement('p');
-					propertyID.textContent = `${propertyName}:`;
-					valueDiv.appendChild(propertyID);
-
-					const propertyValue = document.createElement('p');
-					propertyValue.textContent = `${propertyValue}`;
-					valueDiv.appendChild(propertyValue);
-				}
-			}
+			
+					const propertyLabel = document.createElement('p');
+					propertyLabel.classList.add('info-label');
+					propertyLabel.textContent = `${propertyName}:`;
+					valueDiv.appendChild(propertyLabel);
+			
+					const valueParagraph = document.createElement('p');
+					valueParagraph.classList.add('info-value');
+					valueParagraph.textContent = `${propertyValue} ${propertyValue}`;
+					valueDiv.appendChild(valueParagraph);
+				};
+			};
 			
 			appendPropertyInfo('Height', stickerInfo.height);
 			appendPropertyInfo('Mass', stickerInfo.mass);
@@ -242,33 +247,32 @@ document.addEventListener("DOMContentLoaded", function() {
 			appendPropertyInfo('Manufacturer', stickerInfo.manufacturer);
 			appendPropertyInfo('Length', stickerInfo.length);
 			appendPropertyInfo('Crew', stickerInfo.crew);
-			appendPropertyInfo('Consumables', stickerInfo.consumables);			
-
-
-	// Exit button deletes the whole product-page.
-		const exitButtonsGrid = document.querySelectorAll('.product-page__exit-button');
-		function closeGrid() {
-			const productPages = document.querySelectorAll('.product-page');
-			productPages.forEach(function (productPage) {
-				productPage.remove();
-			});
-		}
-	// Close info-page by clicking X
-		exitButtonsGrid.forEach(function (exitButtonGrid) {
-			exitButtonGrid.addEventListener('click', closeGrid);
-		});
-	// close the info-page by pressing escape button
-		document.addEventListener('keydown', function (event) {
-			if (event.key === 'Escape') {
-				closeGrid();
+			appendPropertyInfo('Consumables', stickerInfo.consumables);
+			
+		// Exit button deletes the whole product-page.
+			const exitButtonsGrid = document.querySelectorAll('.product-page__exit-button');
+			function closeGrid() {
+				const productPages = document.querySelectorAll('.product-page');
+				productPages.forEach(function (productPage) {
+					productPage.remove();
+				});
 			}
-		});
-	};
+		// Close info-page by clicking X
+			exitButtonsGrid.forEach(function (exitButtonGrid) {
+				exitButtonGrid.addEventListener('click', closeGrid);
+			});
+		// close the info-page by pressing escape button
+			document.addEventListener('keydown', function (event) {
+				if (event.key === 'Escape') {
+					closeGrid();
+				};
+			});
+		};
 			
 
 	// Event listener for creating the spesific productpage for each spesific sticker.
-	mainStickers.forEach(function(mainSticker) {
-		mainSticker.addEventListener('click', filterStickers);
-		})
+		mainStickers.forEach(function(mainSticker) {
+			mainSticker.addEventListener('click', filterStickers);
+		});
 	;}
 });
