@@ -19,6 +19,7 @@ function getData() {
         .then(data => {
             apiData[category] = data; // Store the fetched data
             renderDatas(data);
+            console.log(data);
         })
         .catch(error => {
             console.error('Error fetching data:', error);
@@ -35,9 +36,8 @@ function renderDatas(data) {
     
     data.results.forEach(resultObject => {
         // Extract the name and convert it to lowercase
-        const characterName = resultObject.name.toLowerCase();
+        const characterName = (resultObject.name || resultObject.title).toLowerCase();
     
-        
         // Construct the image URL based on the character's name
         const stickerImgUrl = `assets/${characterName}.jpg`;
         const stickerLogo = "assets/Star_Wars_Logo.svg.png";
@@ -50,13 +50,16 @@ function renderDatas(data) {
             gender: resultObject.gender,
             id: resultObject.birth_year,
             logo: stickerLogo,
-            stickerImg: stickerImgUrl // Add the sticker image URL to the resultObject
+            stickerImg: stickerImgUrl,
+            planets: resultObject.title, 
+            episode_id: resultObject.episode_id,
+            opening_crawl: resultObject.opening_crawl,
         });
     });
 
-    // Call displayResults outside the loop if needed
     displayResults();
 }
+
 
 
 let inputLetters = document.getElementById("searchInput")
@@ -76,10 +79,9 @@ function displayResults() {
 
     // All the individual Sticker information
     const newSticker = filteredObjects.map(result => ({
-        stickerHeader: result.name || result.title,
+        stickerHeader: result.name,
         stickerText: result.id, // Assuming id is defined for all types
         stickerImg: result.stickerImg,
-        stickerlogos: result.logo
     }));
 
 
@@ -126,60 +128,96 @@ const mainStickers = document.querySelectorAll('.main-sticker');
 
 
 function filterStickers(event) {
-        
     const clickedElement = event.target;
-
     const stickerInfo = resultArray.find(result => result.name === clickedElement.querySelector('.main-sticker__text-container span').textContent);
 
     if (stickerInfo) {
+    // Product-page container
+        const productPage = document.createElement('div');
+        productPage.classList.add('product-page');
+        document.body.appendChild(productPage);
+            // Product information container
+        const infoContainer = document.createElement('div');
+        infoContainer.classList.add('product-page__info-container', 'offset-small--1', 'offset--7', 'column--4');
+        productPage.appendChild(infoContainer);
 
-// Product-page container
-    const productPage = document.createElement('div');
-    productPage.classList.add('product-page');
-    document.body.appendChild(productPage)
-// Exit-button
-    const exitButton = document.createElement('button');
-    exitButton.classList.add('exit-button__grid');
-    exitButton.textContent = 'X';
-    productPage.appendChild(exitButton);
+        if (stickerInfo.name !== undefined) {
+            const nameParagraph = document.createElement('p');
+            nameParagraph.textContent = `Name: ${stickerInfo.name}`;
+            infoContainer.appendChild(nameParagraph);
+        }
+        
+        if (stickerInfo.height !== undefined) {
+            const heightParagraph = document.createElement('p');
+            heightParagraph.textContent = `Height: ${stickerInfo.height}`;
+            infoContainer.appendChild(heightParagraph);
+        }
+        
+        if (stickerInfo.mass !== undefined) {
+            const massParagraph = document.createElement('p');
+            massParagraph.textContent = `Mass: ${stickerInfo.mass}`;
+            infoContainer.appendChild(massParagraph);
+        }
+        
+        if (stickerInfo.hair !== undefined) {
+            const hairParagraph = document.createElement('p');
+            hairParagraph.textContent = `Hair Color: ${stickerInfo.hair}`;
+            infoContainer.appendChild(hairParagraph);
+        }
+        
+        if (stickerInfo.gender !== undefined) {
+            const genderParagraph = document.createElement('p');
+            genderParagraph.textContent = `Gender: ${stickerInfo.gender}`;
+            infoContainer.appendChild(genderParagraph);
+        }
+        
+        if (stickerInfo.id !== undefined) {
+            const idParagraph = document.createElement('p');
+            idParagraph.textContent = `Birth Year: ${stickerInfo.id}`;
+            infoContainer.appendChild(idParagraph);
+        }
+        
+        if (stickerInfo.logo !== undefined) {
+            const logoParagraph = document.createElement('p');
+            logoParagraph.textContent = `Logo: ${stickerInfo.logo}`;
+            infoContainer.appendChild(logoParagraph);
+        }
+        
+        if (stickerInfo.planets !== undefined) {
+            const planetsParagraph = document.createElement('p');
+            planetsParagraph.textContent = `Planets: ${stickerInfo.planets}`;
+            infoContainer.appendChild(planetsParagraph);
+        }
+        
+        if (stickerInfo.episode_id !== undefined) {
+            const episodeIdParagraph = document.createElement('p');
+            episodeIdParagraph.textContent = `Episode ID: ${stickerInfo.episode_id}`;
+            infoContainer.appendChild(episodeIdParagraph);
+        }
+        
+        if (stickerInfo.opening_crawl !== undefined) {
+            const openingCrawlParagraph = document.createElement('p');
+            openingCrawlParagraph.textContent = `Opening Crawl: ${stickerInfo.opening_crawl}`;
+            infoContainer.appendChild(openingCrawlParagraph);
+        }
+    // Exit-button
+        const exitButton = document.createElement('button');
+        exitButton.classList.add('exit-button__grid');
+        exitButton.textContent = 'X';
+        productPage.appendChild(exitButton);
+    // Picture
+        const pictures = document.createElement('div');
+        pictures.classList.add('slideshow__pictures');
+        productPage.appendChild(pictures);
+    // Image 1
+        const img1 = document.createElement('img');
+        img1.classList.add('productPictures');
+        img1.setAttribute('src', stickerInfo.stickerImg);
+        pictures.appendChild(img1);
+    }
 
-// Logo-container
-    const logoContainer = document.createElement('div');
-    logoContainer.classList.add('product-page__header', 'show', 'offset--8', 'column--2', 'offset-small--5', 'column-small--2');
-    productPage.appendChild(logoContainer);
+    // Rest of your code...
 
-// Logo
-    const logoImg = document.createElement('img');
-    logoImg.setAttribute('src', stickerInfo.stickerLogos);
-    logoContainer.appendChild(logoImg);
-
-// Slideshow-container
-    const slideshowContainer = document.createElement('div');
-    slideshowContainer.classList.add('product-page__slideshow', 'offset-small--1', 'offset--1', 'column--6');
-    productPage.appendChild(slideshowContainer);
-
-// Picture-container
-    const pictures = document.createElement('div');
-    pictures.classList.add('slideshow__pictures');
-    productPage.appendChild(pictures);
-
-// Image 1
-    const img1 = document.createElement('img');
-    img1.classList.add('productPictures');
-    img1.setAttribute('src', stickerInfo.stickerImg);
-    pictures.appendChild(img1);
-    
-// Product information container
-    const infoContainer = document.createElement('div');
-    infoContainer.classList.add('product-page__info-container', 'offset-small--1', 'offset--7', 'column--4');
-    productPage.appendChild(infoContainer);
-    infoContainer.innerHTML = `<p>${stickerInfo.name}</p>
-    <p>${stickerInfo.height}</p>
-    <p>${stickerInfo.mass}</p>
-    <p>${stickerInfo.hair}</p>
-    <p>${stickerInfo.id}</p>
-    <p>${stickerInfo.gender}</p>`
-}
 // Exit button deletes the whole product-page.
     const exitButtonsGrid = document.querySelectorAll('.exit-button__grid');
     function closeGrid() {
@@ -201,5 +239,6 @@ function filterStickers(event) {
 
 // Event listener for creating the spesific productpage for each spesific sticker.
 mainStickers.forEach(function(mainSticker) {
-mainSticker.addEventListener('click', filterStickers);
-});}
+    mainSticker.addEventListener('click', filterStickers);
+    })
+;}
