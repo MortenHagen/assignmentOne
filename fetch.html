@@ -6,7 +6,8 @@
 	<title>Katalogen</title>
 
 	<link rel="stylesheet" href="css/query.css">
-	<link rel="stylesheet" href="css/catalog.css">
+	<link rel="stylesheet" href="css/fetch.css">
+	<link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -18,6 +19,26 @@
 
 <!-- navigator -->
 <div grid class="catalog__navigator-bar column--12 column-small--12">
+	
+	<!--Films-->
+	<button data-menu="films">
+		<a class="main-menu__link offset--4 offset-small--2 column-small--1" href="fetch.html">Films</a>
+	</button>   
+
+	<!--People-->
+	<button data-menu="people">
+		<a class="main-menu__link offset--4 offset-small--2 column-small--1" href="fetch.html">People</a>
+	</button>   
+	
+	<!--Planets-->
+	<button data-menu="planets">
+		<a class="main-menu__link offset--4 offset-small--2 column-small--1" href="fetch.html">Planets</a>
+	</button>
+	<!--Vehicles-->
+	<button data-menu="vehicles">
+		<a class="main-menu__link offset--4 offset-small--2 column-small--1" href="fetch.html">Vehicles</a>
+	</button>
+
     <div class="catalog__input-bar column--3 column-small--5">
         <input id="searchInput" type="text" placeholder="Skriv for å søke.">
 		<img src="" alt="">
