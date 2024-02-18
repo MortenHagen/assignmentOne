@@ -104,10 +104,11 @@
 }
 
 .product-page {
-	background-color: #3c3d3ff6;
+	background-color: #000000f6;
 	display: flex;
 	flex-direction: column;
 	border-radius: 5px;
+	border: 5px solid yellow;
 	position: absolute;
 	justify-content: center;
 	align-items: center;
@@ -119,7 +120,8 @@
 
 .product-page__info-container {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
+	gap: 1rem;
 	max-width: 95%;
 	height: 20rem;
 	background-color: rgb(37, 37, 37);
@@ -137,4 +139,16 @@
 .product-page__picture-container img{
 	height: 40vh;
 	margin: 0 auto;
+}
+
+.product-page__exit-button {
+    font-size: 2rem;
+	padding: 2rem;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.product-page__header {
+	height: 10rem;
 }

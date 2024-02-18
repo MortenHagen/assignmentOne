@@ -58,12 +58,14 @@ document.addEventListener("DOMContentLoaded", function() {
 		data.results.forEach(resultObject => {
 			const characterName = (resultObject.name || resultObject.title).toLowerCase();	
 			const stickerImgUrl = `assets/${characterName}.jpg`;
+			const stickerLogo = "assets/Star_Wars_Logo.svg.png";
 
 			resultArray.push({
 
 			// General
 				name: resultObject.name || resultObject.title,
 				stickerImg: stickerImgUrl,
+				stickerLogo: stickerLogo,
 
 			// People
 				height: resultObject.height,
@@ -122,6 +124,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			stickerHeader: result.name || result.title,
 			stickerText: result.gender || result.climate || result.release_date || result.model,
 			stickerImg: result.stickerImg,
+			stickerLogos: result.stickerLogo
 		}));
 
 
@@ -169,6 +172,17 @@ document.addEventListener("DOMContentLoaded", function() {
 			productPage.classList.add('product-page');
 			document.body.appendChild(productPage);
 
+		// Header container
+			const picturetwo = document.createElement('div');
+			picturetwo.classList.add('product-page__header-container');
+			productPage.appendChild(picturetwo);
+
+		// Header image		
+			const img2 = document.createElement('img');
+			img2.classList.add('product-page__header');
+			img2.setAttribute('src', "assets/Star_Wars_Logo.svg.png");
+			picturetwo.appendChild(img2);
+
 		// Exit-button
 			const exitButton = document.createElement('button');
 			exitButton.classList.add('product-page__exit-button');
@@ -191,128 +205,44 @@ document.addEventListener("DOMContentLoaded", function() {
 			img1.setAttribute('src', stickerInfo.stickerImg);
 			pictures.appendChild(img1);
 
-		// All the different informations stored
-		// Displays only if not "undefined"
-			if (stickerInfo.height !== undefined) {
-				const heightParagraph = document.createElement('p');
-				heightParagraph.textContent = `Height: ${stickerInfo.height}`;
-				infoContainer.appendChild(heightParagraph);
-			};	
+
+			function appendPropertyInfo(propertyName, propertyValue) {
+				if (propertyValue !== undefined) {
+
+					const valueDiv = document.createElement('div');
+					valueDiv.classList.add('value-container');
+					infoContainer.appendChild(valueDiv);
+
+					const propertyID = document.createElement('p');
+					propertyID.textContent = `${propertyName}:`;
+					valueDiv.appendChild(propertyID);
+
+					const propertyValue = document.createElement('p');
+					propertyValue.textContent = `${propertyValue}`;
+					valueDiv.appendChild(propertyValue);
+				}
+			}
 			
-			if (stickerInfo.mass !== undefined) {
-				const massParagraph = document.createElement('p');
-				massParagraph.textContent = `Mass: ${stickerInfo.mass}`;
-				infoContainer.appendChild(massParagraph);
-			};
-			
-			if (stickerInfo.hair !== undefined) {
-				const hairParagraph = document.createElement('p');
-				hairParagraph.textContent = `Hair Color: ${stickerInfo.hair}`;
-				infoContainer.appendChild(hairParagraph);
-			};
-			
-			if (stickerInfo.gender !== undefined) {
-				const genderParagraph = document.createElement('p');
-				genderParagraph.textContent = `Gender: ${stickerInfo.gender}`;
-				infoContainer.appendChild(genderParagraph);
-			};
-			
-			if (stickerInfo.id !== undefined) {
-				const idParagraph = document.createElement('p');
-				idParagraph.textContent = `Birth Year: ${stickerInfo.id}`;
-				infoContainer.appendChild(idParagraph);
-			};
-			
-			if (stickerInfo.climate !== undefined) {
-				const climateParagraph = document.createElement('p');
-				climateParagraph.textContent = `Climate: ${stickerInfo.climate}`;
-				infoContainer.appendChild(climateParagraph);
-			};
-			
-			if (stickerInfo.orbital_period !== undefined) {
-				const orbitalPeriodParagraph = document.createElement('p');
-				orbitalPeriodParagraph.textContent = `Orbital Period: ${stickerInfo.orbital_period}`;
-				infoContainer.appendChild(orbitalPeriodParagraph);
-			};
-			
-			if (stickerInfo.gravity !== undefined) {
-				const gravityParagraph = document.createElement('p');
-				gravityParagraph.textContent = `Gravity: ${stickerInfo.gravity}`;
-				infoContainer.appendChild(gravityParagraph);
-			};
-			
-			if (stickerInfo.terrain !== undefined) {
-				const terrainParagraph = document.createElement('p');
-				terrainParagraph.textContent = `Terrain: ${stickerInfo.terrain}`;
-				infoContainer.appendChild(terrainParagraph);
-			};
-			
-			if (stickerInfo.population !== undefined) {
-				const populationParagraph = document.createElement('p');
-				populationParagraph.textContent = `Population: ${stickerInfo.population}`;
-				infoContainer.appendChild(populationParagraph);
-			};
-			
-			if (stickerInfo.episode_id !== undefined) {
-				const episodeIdParagraph = document.createElement('p');
-				episodeIdParagraph.textContent = `Episode ID: ${stickerInfo.episode_id}`;
-				infoContainer.appendChild(episodeIdParagraph);
-			};
-			
-			if (stickerInfo.director !== undefined) {
-				const directorParagraph = document.createElement('p');
-				directorParagraph.textContent = `Director: ${stickerInfo.director}`;
-				infoContainer.appendChild(directorParagraph);
-			};
-			
-			if (stickerInfo.producer !== undefined) {
-				const producerParagraph = document.createElement('p');
-				producerParagraph.textContent = `Producer: ${stickerInfo.producer}`;
-				infoContainer.appendChild(producerParagraph);
-			};
-			
-			if (stickerInfo.release_date !== undefined) {
-				const releaseDateParagraph = document.createElement('p');
-				releaseDateParagraph.textContent = `Release Date: ${stickerInfo.release_date}`;
-				infoContainer.appendChild(releaseDateParagraph);
-			};
-			
-			if (stickerInfo.opening_crawl !== undefined) {
-				const openingCrawlParagraph = document.createElement('p');
-				openingCrawlParagraph.textContent = `Opening Crawl: ${stickerInfo.opening_crawl}`;
-				infoContainer.appendChild(openingCrawlParagraph);
-			};
-			
-			if (stickerInfo.model !== undefined) {
-				const modelParagraph = document.createElement('p');
-				modelParagraph.textContent = `Model: ${stickerInfo.model}`;
-				infoContainer.appendChild(modelParagraph);
-			};
-			
-			if (stickerInfo.manufacturer !== undefined) {
-				const manufacturerParagraph = document.createElement('p');
-				manufacturerParagraph.textContent = `Manufacturer: ${stickerInfo.manufacturer}`;
-				infoContainer.appendChild(manufacturerParagraph);
-			};
-			
-			if (stickerInfo.length !== undefined) {
-				const lengthParagraph = document.createElement('p');
-				lengthParagraph.textContent = `Length: ${stickerInfo.length}`;
-				infoContainer.appendChild(lengthParagraph);
-			};
-			
-			if (stickerInfo.crew !== undefined) {
-				const crewParagraph = document.createElement('p');
-				crewParagraph.textContent = `Crew: ${stickerInfo.crew}`;
-				infoContainer.appendChild(crewParagraph);
-			};
-			
-			if (stickerInfo.consumables !== undefined) {
-				const consumablesParagraph = document.createElement('p');
-				consumablesParagraph.textContent = `Consumables: ${stickerInfo.consumables}`;
-				infoContainer.appendChild(consumablesParagraph);
-			};
-		
+			appendPropertyInfo('Height', stickerInfo.height);
+			appendPropertyInfo('Mass', stickerInfo.mass);
+			appendPropertyInfo('Hair Color', stickerInfo.hair);
+			appendPropertyInfo('Gender', stickerInfo.gender);
+			appendPropertyInfo('ID', stickerInfo.id);
+			appendPropertyInfo('Climate', stickerInfo.climate);
+			appendPropertyInfo('Orbital Period', stickerInfo.orbital_period);
+			appendPropertyInfo('Gravity', stickerInfo.gravity);
+			appendPropertyInfo('Terrain', stickerInfo.terrain);
+			appendPropertyInfo('Population', stickerInfo.population);
+			appendPropertyInfo('Episode ID', stickerInfo.episode_id);
+			appendPropertyInfo('Director', stickerInfo.director);
+			appendPropertyInfo('Producer', stickerInfo.producer);
+			appendPropertyInfo('Release Date', stickerInfo.release_date);
+			appendPropertyInfo('Opening Crawl', stickerInfo.opening_crawl);
+			appendPropertyInfo('Model', stickerInfo.model);
+			appendPropertyInfo('Manufacturer', stickerInfo.manufacturer);
+			appendPropertyInfo('Length', stickerInfo.length);
+			appendPropertyInfo('Crew', stickerInfo.crew);
+			appendPropertyInfo('Consumables', stickerInfo.consumables);			
 
 
 	// Exit button deletes the whole product-page.
