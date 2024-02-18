@@ -1,3 +1,4 @@
+
 [grid] {
 	display: grid;
 	grid-template-columns: repeat(12, 1fr);
@@ -6,7 +7,70 @@
 	width: 100%;
 }
 
+.header {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+}
 
+.header2 {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+}
+
+.header img {
+	height: 18rem;
+	margin: 0 auto;
+}
+
+.header2 img {
+	height: 10rem;
+	margin: 0 auto;
+}
+
+
+button {
+	font: inherit;
+	color: inherit;
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	touch-action: manipulation;
+}
+a {
+	text-decoration: none;
+	color: black;
+}
+
+
+html {
+	font-size: 16px;
+	font-family: 'Inter', sans-serif;
+	color: black;
+}
+
+:root {
+	--border-radius: 5px;
+
+	--font-size-small: 0.7rem;
+	--font-size-medium: 1.5rem;
+	--font-size-large: 2rem;
+
+	--font-leading-base: 0.5rem;
+	--font-leading-xsmall: 0.2rem;
+	--font-leading-small: 0.5rem;
+	--font-leading-medium: 0.5rem;
+	--font-leading-large: 0.5rem;
+
+	--background-gradient: linear-gradient(to top, #a7d2f7, #e0eefb);
+	--scale-color: #d6e0eb;
+	--faded-color: #01428878;
+	--primary-color: #014288;
+	--original-color: #015bab;
+	--secondary-color: #620084;
+	--box-border: 6px;
+}
 
 @media screen and (max-width: 1023px) {	
 	.column--1,
@@ -163,7 +227,6 @@
 	.column-small--12 {
 		grid-column-end: span 12;
 	}
-
 }
 
 @media screen and (min-width: 1024px) {
