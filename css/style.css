@@ -10,7 +10,7 @@ body{
 
 .main-menu-container{
     display: flex;
-    
+    flex-direction: column;
 }
 
 .main-menu {
@@ -22,10 +22,22 @@ body{
     gap: 3rem;
 }
 
-.main-menu li:hover{
+.picture-container {
+    display: flex;
+    justify-content: center;
+    max-height: 20%;
+}
+
+.picture-container img {
+    display: none;
+    max-height: 45vh;
+}
+
+.main-menu__link {
+    color: white;
+}
+
+.main-menu__link:hover{
     color: yellow;
     cursor: pointer;
-}
-.film-img{
-    display: none;
 }
