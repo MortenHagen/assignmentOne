@@ -72,7 +72,7 @@ html {
 	--box-border: 6px;
 }
 
-@media screen and (max-width: 1023px) {	
+@media screen and (max-width: 1101px) {	
 	.column--1,
 	.column--2,
 	.column--3,
@@ -229,7 +229,7 @@ html {
 	}
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1102px) {
 
 	.offset--1 {
 		grid-column-start: 2;
@@ -373,7 +373,7 @@ html {
 }
 
 
-@media screen and (max-width: 1023px) {	
+@media screen and (max-width: 1101px) {	
 
 
 	.row-offset-small--1 {
@@ -470,7 +470,7 @@ html {
 
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1102px) {
 
 	.row-offset--1 {
 		grid-row-start: 2;

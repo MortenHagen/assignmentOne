@@ -209,25 +209,27 @@ document.addEventListener("DOMContentLoaded", function() {
 			img1.setAttribute('src', stickerInfo.stickerImg);
 			pictures.appendChild(img1);
 		
-		// creating the individual infos
-		function appendPropertyInfo(propertyName, propertyValue) {
-			if (propertyValue !== undefined) {
-				const valueDiv = document.createElement('div');
-				valueDiv.classList.add('value-container');
-				infoContainer.appendChild(valueDiv);
-		
-				const propertyLabel = document.createElement('p');
-				propertyLabel.classList.add('info-label');
-				propertyLabel.textContent = `${propertyName}:`;
-				valueDiv.appendChild(propertyLabel);
-		
-				const valueParagraph = document.createElement('p');
-				valueParagraph.classList.add('info-value');
-				valueParagraph.textContent = propertyValue;
-				valueDiv.appendChild(valueParagraph);
-			};
-		};
-		
+			function appendPropertyInfo(propertyName, propertyValue) {
+				console.log("Appending property:", propertyName, "with value:", propertyValue);
+			
+				if (propertyValue !== undefined) {
+					const valueDiv = document.createElement('div')
+					valueDiv.classList.add('value-container', 'column--2', 'small-column--3');
+					infoContainer.appendChild(valueDiv);
+			
+					const propertyLabel = document.createElement('div');
+					propertyLabel.classList.add('info-label');
+					propertyLabel.textContent = `${propertyName}:`;
+					console.log("Property label created:", propertyLabel);
+					valueDiv.appendChild(propertyLabel);
+			
+					const valueParagraph = document.createElement('div');
+					valueParagraph.classList.add('info-value');
+					valueParagraph.textContent = `${propertyValue}:`;
+					console.log("Value paragraph created:", valueParagraph);
+					valueDiv.appendChild(valueParagraph);
+				}
+			}
 			
 			appendPropertyInfo('Height', stickerInfo.height);
 			appendPropertyInfo('Mass', stickerInfo.mass);
@@ -270,7 +272,6 @@ document.addEventListener("DOMContentLoaded", function() {
 			});
 		};
 			
-
 	// Event listener for creating the spesific productpage for each spesific sticker.
 		mainStickers.forEach(function(mainSticker) {
 			mainSticker.addEventListener('click', filterStickers);
