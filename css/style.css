@@ -154,68 +154,88 @@ body{
 	background-color: #000000f6;
 	display: flex;
 	flex-direction: column;
-	border-radius: 5px;
+	border-radius: var(--border-radius);
 	border: 5px solid yellow;
 	position: absolute;
-	justify-content: center;
+    overflow: scroll;
 	align-items: center;
-	top: 10%;
+    padding-top: 2rem;
+	top: 5%;
 	left: 20%;
-	width: 60%;
+	width: 65%;
 	height: 85%;
 }
 
 .product-page__header {
-	height: 10rem;
+	height: 7rem;
 }
 
 .product-page__info-container {
 	display: flex;
 	flex-direction: row;
-	column-gap: 5rem;
 	max-width: 95%;
-	background-color: rgb(37, 37, 37);
+	background-color: rgb(22, 22, 22);
 	border-radius: 6px;
 	padding: 1rem;
-	padding-top: 6px;
 }
 
 .product-page__picture-container{
 	display: flex;
+    margin-top: -9rem;
 	width: 100%;
 }
 
 .product-page__picture-container img{
-	height: 35vh;
+	height: 40vh;
+    max-width: 90%;
+    background-color: black;
 	margin: 0 auto;
+    border: 1px solid yellow;
 }
 
 .product-page__exit-button {
     font-size: 2rem;
 	padding: 2rem;
     position: absolute;
+    color: yellow;
     left: 0;
     top: 0;
 }
 
 .value-container {
-	background: blue;
+    display: flex;
+    flex-direction: column;
+    column-gap: 0.2rem;
 	height: fit-content;
+    min-height: 20rem;
+    width: 100%;
+    align-items: center;
+}
+
+.info-label {
+	display: flex;
+    color: yellow;
+    font-size: 1.1rem;
+    font-weight: bold;
+	height: 2rem;
+    min-width: max-content;
+    padding: 0rem 0.2rem;
+	justify-content: center;
+	align-items: center;
+    margin-left: 0.4rem;
+    margin-right: 0.4rem;
 }
 
 .info-value {
 	display: flex;
-	justify-content: center;
-	align-items: center;
+    background: rgb(0, 0, 0);
 	max-height: 20vh;
+    width: max-content;
+    max-width: 13rem;
+    border-left: 1px solid yellow;
 	overflow: scroll;
-}
-.info-label {
-	display: flex;
-	border-radius: 50%;
-	height: 2rem;
-	justify-content: center;
-	align-items: center;
-	overflow: scroll;
-
+    margin-left: 0.4rem;
+    margin-right: 0.4rem;
+    padding: 0.5rem;
+    border-radius: var(--border-radius);
 }

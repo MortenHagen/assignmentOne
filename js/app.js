@@ -1,12 +1,13 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const menuItems = document.querySelectorAll(".main-menu button");
+
+	const menuItems = document.querySelectorAll(".main-menu button");
     const images = document.querySelectorAll(".picture-container img");
+	const storedValue = localStorage.getItem('storedValue');
 
 	let resultArray = [];
 	let stickerContainer;
 	let category = "";
 	let apiData = {};
-	const storedValue = localStorage.getItem('storedValue');
 
 
 // Main page display images when hovering buttons
@@ -72,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function() {
 				mass: resultObject.mass,
 				hair: resultObject.hair_color,
 				gender: resultObject.gender,
-				id: resultObject.birth_year,
+				birth_year: resultObject.birth_year,
 
 			//Planets
 				climate: resultObject.climate,
@@ -102,7 +103,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // Search-bar eventlisener-logic 
 	let inputLetters = document.getElementById("searchInput")
-
 	inputLetters.addEventListener('input', () => {
 		displayResults(); // Just filter and display results based on the stored data
 	});
@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	// All the individual Sticker information
 		const newSticker = filteredObjects.map(result => ({
 			stickerHeader: result.name || result.title,
-			stickerText: result.gender || result.climate || result.release_date || result.model,
+			stickerText: result.gender || result.climate || result.release_date || result.manufacturer,
 			stickerImg: result.stickerImg,
 			stickerLogos: result.stickerLogo
 		}));
@@ -188,9 +188,10 @@ document.addEventListener("DOMContentLoaded", function() {
 			exitButton.textContent = 'X';
 			productPage.appendChild(exitButton);
 
-			const infoPageName = document.createElement('p');
+			const infoPageName = document.createElement('h1');
 			infoPageName.classList.add('info-page-name');
 			infoPageName.textContent = (stickerInfo.name)
+			productPage.appendChild(infoPageName)
 
 		// Product information container
 			const infoContainer = document.createElement('div');
@@ -209,30 +210,30 @@ document.addEventListener("DOMContentLoaded", function() {
 			pictures.appendChild(img1);
 		
 		// creating the individual infos
-			function appendPropertyInfo(propertyName, propertyValue) {
-				if (propertyValue !== undefined) {
-			
-					const valueDiv = document.createElement('div');
-					valueDiv.classList.add('value-container');
-					infoContainer.appendChild(valueDiv);
-			
-					const propertyLabel = document.createElement('p');
-					propertyLabel.classList.add('info-label');
-					propertyLabel.textContent = `${propertyName}:`;
-					valueDiv.appendChild(propertyLabel);
-			
-					const valueParagraph = document.createElement('p');
-					valueParagraph.classList.add('info-value');
-					valueParagraph.textContent = `${propertyValue} ${propertyValue}`;
-					valueDiv.appendChild(valueParagraph);
-				};
+		function appendPropertyInfo(propertyName, propertyValue) {
+			if (propertyValue !== undefined) {
+				const valueDiv = document.createElement('div');
+				valueDiv.classList.add('value-container');
+				infoContainer.appendChild(valueDiv);
+		
+				const propertyLabel = document.createElement('p');
+				propertyLabel.classList.add('info-label');
+				propertyLabel.textContent = `${propertyName}:`;
+				valueDiv.appendChild(propertyLabel);
+		
+				const valueParagraph = document.createElement('p');
+				valueParagraph.classList.add('info-value');
+				valueParagraph.textContent = propertyValue;
+				valueDiv.appendChild(valueParagraph);
 			};
+		};
+		
 			
 			appendPropertyInfo('Height', stickerInfo.height);
 			appendPropertyInfo('Mass', stickerInfo.mass);
 			appendPropertyInfo('Hair Color', stickerInfo.hair);
 			appendPropertyInfo('Gender', stickerInfo.gender);
-			appendPropertyInfo('ID', stickerInfo.id);
+			appendPropertyInfo('Birth Year', stickerInfo.birth_year);
 			appendPropertyInfo('Climate', stickerInfo.climate);
 			appendPropertyInfo('Orbital Period', stickerInfo.orbital_period);
 			appendPropertyInfo('Gravity', stickerInfo.gravity);
