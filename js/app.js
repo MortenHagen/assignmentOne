@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
 
 	const menuItems = document.querySelectorAll(".main-menu button");
-    const images = document.querySelectorAll(".picture-container img");
+	const images = document.querySelectorAll(".picture-container img");
 	const storedValue = localStorage.getItem('storedValue');
 
 	let resultArray = [];
@@ -11,27 +11,27 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 // Main page display images when hovering buttons
-    menuItems.forEach(item => {
-        item.addEventListener("mouseover", function() {
-            const dataImg = this.getAttribute("data-menu");
-            images.forEach(img => {
-                if (img.getAttribute("data-img") === dataImg) {
-                    img.style.display = "block";
-                } else {
-                    img.style.display = "none";
-                }
-            });
-        });
-    });
+	menuItems.forEach(item => {
+		item.addEventListener("mouseover", function() {
+			const dataImg = this.getAttribute("data-menu");
+			images.forEach(img => {
+				if (img.getAttribute("data-img") === dataImg) {
+					img.style.display = "block";
+				} else {
+					img.style.display = "none";
+				}
+			});
+		});
+	});
 
 // Store witch value to fetch
-    const mainPageButtons = document.querySelectorAll('button[data-menu]');
-    mainPageButtons.forEach(button => {
-        button.addEventListener('click', function () {
-            const selectedValue = this.dataset.menu;
-            localStorage.setItem('storedValue', selectedValue);
-        });
-    });
+	const mainPageButtons = document.querySelectorAll('button[data-menu]');
+	mainPageButtons.forEach(button => {
+		button.addEventListener('click', function () {
+			const selectedValue = this.dataset.menu;
+			localStorage.setItem('storedValue', selectedValue);
+		});
+	});
 
 // Fetching the selected data
 	function getData() {

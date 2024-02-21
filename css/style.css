@@ -1,48 +1,48 @@
 body{
-    background: black;
-    color: white;
+	background: black;
+	color: white;
 }
 
 .header-img {
-    display: flex;
-    margin: 0 auto;
+	display: flex;
+	margin: 0 auto;
 }
 
 .main-menu-container{
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 
 .main-menu {
-    margin: 0 auto;
-    display: flex;
-    list-style: none;
-    font-size: 3rem;
-    flex-direction: row;
-    gap: 3rem;
+	margin: 0 auto;
+	display: flex;
+	list-style: none;
+	font-size: 3rem;
+	flex-direction: row;
+	gap: 3rem;
 }
 
 .picture-container {
-    display: flex;
-    justify-content: center;
-    max-height: 20%;
+	display: flex;
+	justify-content: center;
+	max-height: 20%;
 }
 
 .picture-container img {
-    display: none;
-    max-height: 45vh;
+	display: none;
+	max-height: 45vh;
 }
 
 .main-menu__link {
-    color: white;
-    font-size: 2rem;
-    margin: 5rem;
-    font-weight: 900;
+	color: white;
+	font-size: 2rem;
+	margin: 5rem;
+	font-weight: 900;
 }
 
 .main-menu__link:hover{
-    color: yellow;
-    cursor: pointer;
+	color: yellow;
+	cursor: pointer;
 }
 
 .result-container {
@@ -159,9 +159,9 @@ body{
 	border-radius: var(--border-radius);
 	border: 5px solid yellow;
 	position: absolute;
-    overflow: scroll;
+	overflow: scroll;
 	align-items: center;
-    padding-top: 2rem;
+	padding-top: 2rem;
 	top: 5%;
 	left: 5%;
 	width: 90%;
@@ -185,7 +185,7 @@ body{
 
 .product-page__picture-container{
 	display: flex;
-    margin-top: -14rem;
+	margin-top: -14rem;
 	width: 100%;
 }
 @media screen and (max-width: 1101px) {	
@@ -196,25 +196,25 @@ body{
 
 .product-page__picture-container img{
 	height: 45vh;
-    max-width: 90%;
-    background-color: black;
+	max-width: 90%;
+	background-color: black;
 	margin: 0 auto;
-    border: 1px solid yellow;
+	border: 1px solid yellow;
 }
 
 .product-page__exit-button {
-    font-size: 2rem;
+	font-size: 2rem;
 	padding: 2rem;
-    position: absolute;
-    color: yellow;
-    left: 0;
-    top: 0;
+	position: absolute;
+	color: yellow;
+	left: 0;
+	top: 0;
 }
 
 .value-container {
-    display: flex;
-    flex-direction: column;
-    column-gap: 0.2rem;
+	display: flex;
+	flex-direction: column;
+	column-gap: 0.2rem;
 	min-height: 20rem;
 }
 
@@ -227,12 +227,12 @@ body{
 
 .info-label {
 	display: flex;
-    color: yellow;
-    font-size: 1.1rem;
-    font-weight: bold;
+	color: yellow;
+	font-size: 1.1rem;
+	font-weight: bold;
 	height: 2rem;
-    min-width: max-content;
-    padding: 0rem 0.2rem;
+	min-width: max-content;
+	padding: 0rem 0.2rem;
 	justify-content: center;
 	align-items: center;
 
@@ -240,13 +240,13 @@ body{
 
 .info-value {
 	display: flex;
-    background: rgb(0, 0, 0);
+	background: rgb(0, 0, 0);
 	max-height: 25vh;
-    min-width: 100%;
+	min-width: 100%;
 	justify-content: center;
 	border-left: 1px solid yellow;
 	overflow: scroll;
 
-    padding: 0.5rem;
-    border-radius: var(--border-radius);
+	padding: 0.5rem;
+	border-radius: var(--border-radius);
 }
