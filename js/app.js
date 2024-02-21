@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		}
 		
 		data.results.forEach(resultObject => {
-			const characterName = (resultObject.name || resultObject.title).toLowerCase();	
+			const characterName = (resultObject.name || resultObject.title).toLowerCase().replace('/', ' ');
 			const stickerImgUrl = `assets/${characterName}.jpg`;
 			const stickerLogo = "assets/Star_Wars_Logo.svg.png";
 
@@ -113,10 +113,10 @@ document.addEventListener("DOMContentLoaded", function() {
 		stickerContainer.innerHTML = '';
 		const searchValue = document.getElementById('searchInput').value;
 
-	// checking and re-rendering the filtered list on each input
-		const filteredObjects = resultArray.filter(result =>
-			result.name.toLowerCase().includes(searchValue.toLowerCase())
-		);
+// checking and re-rendering the filtered list on each input
+	const filteredObjects = resultArray.filter(result =>
+		result.name.toLowerCase().includes(searchValue.toLowerCase()));
+
 
 	// All the individual Sticker information
 		const newSticker = filteredObjects.map(result => ({
@@ -209,28 +209,39 @@ document.addEventListener("DOMContentLoaded", function() {
 			img1.setAttribute('src', stickerInfo.stickerImg);
 			pictures.appendChild(img1);
 		
+			// Modify the appendPropertyInfo function to return the created valueDiv
 			function appendPropertyInfo(propertyName, propertyValue) {
-				console.log("Appending property:", propertyName, "with value:", propertyValue);
-			
+				
 				if (propertyValue !== undefined) {
 					const valueDiv = document.createElement('div')
 					valueDiv.classList.add('value-container', 'column--2', 'small-column--3');
 					infoContainer.appendChild(valueDiv);
-			
+				
 					const propertyLabel = document.createElement('div');
 					propertyLabel.classList.add('info-label');
 					propertyLabel.textContent = `${propertyName}:`;
-					console.log("Property label created:", propertyLabel);
 					valueDiv.appendChild(propertyLabel);
-			
+				
 					const valueParagraph = document.createElement('div');
 					valueParagraph.classList.add('info-value');
-					valueParagraph.textContent = `${propertyValue}:`;
-					console.log("Value paragraph created:", valueParagraph);
+					valueParagraph.textContent = `${propertyValue}`;
 					valueDiv.appendChild(valueParagraph);
+
+					// Return the created valueDiv
+					return valueDiv;
 				}
 			}
-			
+
+			// Call the function and store the returned valueDiv in a variable
+			const fifthDiv = appendPropertyInfo("Test Property", "Test Value");
+
+			// Now manipulate the fifth div if it exists
+			if (fifthDiv) {
+				fifthDiv.style.backgroundColor = 'red'; // For example, change its background color
+			} else {
+			}
+
+
 			appendPropertyInfo('Height', stickerInfo.height);
 			appendPropertyInfo('Mass', stickerInfo.mass);
 			appendPropertyInfo('Hair Color', stickerInfo.hair);
@@ -270,11 +281,14 @@ document.addEventListener("DOMContentLoaded", function() {
 					closeGrid();
 				};
 			});
+			
 		};
 			
 	// Event listener for creating the spesific productpage for each spesific sticker.
 		mainStickers.forEach(function(mainSticker) {
 			mainSticker.addEventListener('click', filterStickers);
 		});
+		
 	;}
+	
 });

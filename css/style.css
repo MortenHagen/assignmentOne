@@ -87,9 +87,11 @@ body{
 .result-container {
 	grid-template-columns: repeat(12, 1fr);
 	height: max-content;
+	height: 70vh;
 	gap: 2rem;
 	padding: 0.5rem;
 	padding-top: 1rem;
+	overflow: scroll;
 }
 
 .main-sticker {
@@ -183,7 +185,7 @@ body{
 
 .product-page__picture-container{
 	display: flex;
-    margin-top: -9rem;
+    margin-top: -14rem;
 	width: 100%;
 }
 @media screen and (max-width: 1101px) {	
@@ -193,7 +195,7 @@ body{
 }
 
 .product-page__picture-container img{
-	height: 40vh;
+	height: 45vh;
     max-width: 90%;
     background-color: black;
 	margin: 0 auto;
@@ -215,6 +217,7 @@ body{
     column-gap: 0.2rem;
 	height: fit-content;
     width: 100%;
+	height: 20rem;
     align-items: center;
 }
 @media screen and (max-width: 1101px) {	
@@ -240,7 +243,7 @@ body{
 .info-value {
 	display: flex;
     background: rgb(0, 0, 0);
-	max-height: 20vh;
+	max-height: 25vh;
     min-width: 100%;
 	justify-content: center;
 	border-left: 1px solid yellow;
