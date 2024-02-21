@@ -129,7 +129,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	// Creating the stickers
 		newSticker.forEach((sticker) => {
-			const mainSticker = document.createElement('div');
+			const mainSticker = document.createElement('button');
 			mainSticker.classList.add('main-sticker', 'column--4', 'offset-small--1');
 			stickerContainer.appendChild(mainSticker);
 
@@ -159,13 +159,12 @@ document.addEventListener("DOMContentLoaded", function() {
 		});
 		document.body.appendChild(stickerContainer);
 
-
-	// Creating the productpage and it's functions/logic within.
 		const mainStickers = document.querySelectorAll('.main-sticker');
 
 		function filterStickers(event) {
-			const clickedElement = event.target;
+			const clickedElement = event.currentTarget; 
 			const stickerInfo = resultArray.find(result => result.name === clickedElement.querySelector('.main-sticker__text-container span').textContent);
+		
 		// Product-page container
 			const productPage = document.createElement('div');
 			productPage.classList.add('product-page');
@@ -209,38 +208,24 @@ document.addEventListener("DOMContentLoaded", function() {
 			img1.setAttribute('src', stickerInfo.stickerImg);
 			pictures.appendChild(img1);
 		
-			// Modify the appendPropertyInfo function to return the created valueDiv
 			function appendPropertyInfo(propertyName, propertyValue) {
-				
+			
 				if (propertyValue !== undefined) {
 					const valueDiv = document.createElement('div')
-					valueDiv.classList.add('value-container', 'column--2', 'small-column--3');
+					valueDiv.classList.add('value-container', 'column--2', 'column-small--5');
 					infoContainer.appendChild(valueDiv);
-				
+			
 					const propertyLabel = document.createElement('div');
 					propertyLabel.classList.add('info-label');
 					propertyLabel.textContent = `${propertyName}:`;
 					valueDiv.appendChild(propertyLabel);
-				
+			
 					const valueParagraph = document.createElement('div');
 					valueParagraph.classList.add('info-value');
 					valueParagraph.textContent = `${propertyValue}`;
 					valueDiv.appendChild(valueParagraph);
-
-					// Return the created valueDiv
-					return valueDiv;
 				}
 			}
-
-			// Call the function and store the returned valueDiv in a variable
-			const fifthDiv = appendPropertyInfo("Test Property", "Test Value");
-
-			// Now manipulate the fifth div if it exists
-			if (fifthDiv) {
-				fifthDiv.style.backgroundColor = 'red'; // For example, change its background color
-			} else {
-			}
-
 
 			appendPropertyInfo('Height', stickerInfo.height);
 			appendPropertyInfo('Mass', stickerInfo.mass);

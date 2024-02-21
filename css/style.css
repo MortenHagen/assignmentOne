@@ -215,14 +215,13 @@ body{
     display: flex;
     flex-direction: column;
     column-gap: 0.2rem;
-	height: fit-content;
-    width: 100%;
-	height: 20rem;
-    align-items: center;
+	min-height: 20rem;
 }
+
 @media screen and (max-width: 1101px) {	
 	.value-container {
 		max-width: 30rem;
+		min-height: 3rem;
 	}
 }
 
@@ -236,8 +235,7 @@ body{
     padding: 0rem 0.2rem;
 	justify-content: center;
 	align-items: center;
-    margin-left: 0.4rem;
-    margin-right: 0.4rem;
+
 }
 
 .info-value {
@@ -248,8 +246,7 @@ body{
 	justify-content: center;
 	border-left: 1px solid yellow;
 	overflow: scroll;
-    margin-left: 0.4rem;
-    margin-right: 0.4rem;
+
     padding: 0.5rem;
     border-radius: var(--border-radius);
 }
